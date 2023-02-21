@@ -20,6 +20,8 @@ void insertion_sort(int list[], int n){
   }
 }
 
+
+
 void main(){
   int i;
   int n = MAX_SIZE;
