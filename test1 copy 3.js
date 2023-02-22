@@ -1,7 +1,14 @@
-//0 1 2 2 2 7
+/*
+    boj.kr/4344
+
+    0 1 2 2 2 7
+*/
+
 let fs = require('fs');
 // let input = fs.readFileSync('/dev/stdin').toString().trim();
-let input = fs.readFileSync('./test1 copy 3.js').toString().split(' ');
+let input = fs.readFileSync('./input.txt').toString();
+console.log(input);
+input = input.split('/n'); 
 
 let set = [1,1,2,2,2,8]
 let arr = input;
@@ -10,5 +17,4 @@ for(let i = 0 ; arr.length>=i;i++){
     arr[i] = set[i] - input[i]
     }
 }
-console.log(arr);
-//1 0 0 0 0 1
+
