@@ -7,7 +7,7 @@
 */
 
 var fs = require('fs');
-const input = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+const input = require('fs').readFileSync('./input22.txt').toString().split('\n');
 
 let a = parseInt(input[0].split(' ')[0]);
 let b = parseInt(input[0].split(' ')[1]);
