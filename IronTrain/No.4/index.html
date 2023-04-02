@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IronTrain</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <header class="header">
+    <img src="./asset/logo.png" class="logo" width="40px" height="40px" />
+    <h1>IRONTRAIN CAFE</h1>
+  </header>
+  <body>
+    <div class="container">
+      <div class="menu">
+        <div class="menu_1">
+          <div id="1" class="no_1">
+            <h3>에스프레소</h3>
+            <img src="./asset/에스프레소.jpg" alt="img_1" class="img" />
+            <h5>에스프레소 3600월</h5>
+            <div class="menu_footer">
+              <h5 class="amount_1">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="2" class="no_2">
+            <h3>아메리카노</h3>
+            <img src="./asset/아메리카노.jpg" alt="img_2" class="img" />
+            <h5>아메리카노 4100원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_2">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="3" class="no_3">
+            <h3>카페 라떼</h3>
+            <img src="./asset/카페라떼.jpg" alt="img_3" class="img" />
+            <h5>카페 라떼 4600원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_3">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+        </div>
+        <div class="menu_2">
+          <div id="4" class="no_4">
+            <h3>카라멜 마키아또</h3>
+            <img src="./asset/카라멜마키아또.jpg" alt="img_4" class="img" />
+            <h5>카라멜 마키아또 5600원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_4">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="5" class="no_5">
+            <h3>돌체 라떼</h3>
+            <img src="./asset/돌체라떼.jpg" alt="img_5" class="img" />
+            <h5>돌체 라떼 5600원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_5">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="6" class="no_6">
+            <h3>돌체 콜드 브루</h3>
+            <img src="./asset/돌체콜드브루.jpg" alt="img_6" class="img" />
+            <h5>돌체 콜드 브루 5800원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_6">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+        </div>
+        <div class="menu_3">
+          <div id="7" class="no_7">
+            <h3>딸기 딜라이트 요거트 블렌디드</h3>
+            <img src="./asset/딸기요거트.jpg" alt="img_4" class="img" />
+            <h5>딸기 딜라이트 요거트 블렌디드 6100원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_7">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="8" class="no_8">
+            <h3>자몽 허니 블랙티</h3>
+            <img src="./asset/자몽티.jpg" alt="img_5" class="img" />
+            <h5>자몽 허니 블랙티 5300원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_8">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+          <div id="9" class="no_9">
+            <h3>자바 칩 프라푸치노</h3>
+            <img src="./asset/자바칩.jpg" alt="img_6" class="img" />
+            <h5>자바 칩 프라푸치노 6100원</h5>
+            <div class="menu_footer">
+              <h5 class="amount_9">0</h5>
+              <h5>잔</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order">
+        <h1>주문내역</h1>
+        <div class="order_header">
+          <h3>총합</h3>
+          <input type="text" name="sum" class="sum"/>
+          <h3>원</h3>
+          <button type="submit">주문하기</button>
+        </div>
+        <div class="order_body">
+          <div class="order_body_list_head">
+            <div class="order_body_list_head_menu">
+              <h5>메뉴</h5>
+            </div>
+            <div class="order_body_list_head_amount">
+              <h5>수량</h5>
+            </div>
+            <div class="order_body_list_head_price">
+              <h5>가격</h5>
+            </div>
+            <div class="order_body_list_head_delete_btn">
+              <h5>삭제</h5>
+            </div>
+          </div>
+        </div>
+        <div class="order_footer"></div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <button class="add">주문 추가</button>
+    <button class="cancle">취소하기</button>
+  </footer>
+  <script src="./app.js"></script>
+</html>
