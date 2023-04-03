@@ -65,7 +65,15 @@ const btn_7 = document.getElementById(7);
 const btn_8 = document.getElementById(8);
 const btn_9 = document.getElementById(9);
 
-
+const deleteMenu_1 = document.querySelector(".cancle_1");
+const deleteMenu_2 = document.querySelector(".cancle_2");
+const deleteMenu_3 = document.querySelector(".cancle_3");
+const deleteMenu_4 = document.querySelector(".cancle_4");
+const deleteMenu_5 = document.querySelector(".cancle_5");
+const deleteMenu_6 = document.querySelector(".cancle_6");
+const deleteMenu_7 = document.querySelector(".cancle_7");
+const deleteMenu_8 = document.querySelector(".cancle_8");
+const deleteMenu_9 = document.querySelector(".cancle_9");
 
 const orderCancleBtn = document.querySelector(`.cancle`);
 const orderedFooter = document.querySelector(`.order_footer`);
@@ -76,6 +84,7 @@ const clickMenu = (id) => {
   document.querySelector(`.amount_${id}`).innerHTML = selected[id - 1].cnt;
 };
 let orderHistory = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let deleteAllBtnNum = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let total = 0;
 const addOrder = () => {
   for (let i = 1; i < selected.length + 1; i++) {
@@ -108,10 +117,10 @@ const addOrder = () => {
       deleteBtn.classList.add(`cancle_${i}`);
       deleteBtn.classList.add(`delete_menu`);
       deleteBtn.innerHTML = "Delete";
-      deleteBtn.onclick = deleteMenu(i)
+      deleteAllBtnNum[i - 1] = 1;
+      deleteBtn.onclick = deleteMenu;
       inOrder.appendChild(deleteBtn);
       orderedFooter.appendChild(inOrder);
-
     } else if (selected[i - 1].cnt !== 0 && orderHistory[i - 1] > 0) {
       document.querySelector(`.cnt_${i}`).innerHTML =
         selected[i - 1].cnt + orderHistory[i - 1];
@@ -134,58 +143,37 @@ const addOrder = () => {
   }
 };
 
-const orderCancle = () => {
-  for (let i = 1; i < selected.length + 1; i++) {
-    selected[i - 1].cnt = 0;
-    orderHistory[i - 1] = 0;
-    document.querySelector(`.amount_${i}`).innerHTML = 0;
-  }
+const deleteMenu = (e) => {
+  document.querySelector(`.in_order_${e.target.className[7]}`).remove();
+  selected[Number(e.target.className[7]) - 1].cnt = 0;
+
+  total -=
+    orderHistory[Number(e.target.className[7]) - 1] *
+    selected[Number(e.target.className[7]) - 1].price;
+  document.querySelector(`.sum`).value = total;
+  orderHistory[Number(e.target.className[7]) - 1] = 0;
+  deleteAllBtnNum[e.target.className[7] - 1] = 0;
 };
-
-const deleteMenu = (e) =>{
-    document.querySelector(`.order_footer`)
-
-
-
-    // const deleteMenu_1 = document.querySelector('.cancle_1');
-    // const deleteMenu_2 = document.querySelector('.cancle_2');
-    // const deleteMenu_3 = document.querySelector('.cancle_3');
-    // const deleteMenu_4 = document.querySelector('.cancle_4');
-    // const deleteMenu_5 = document.querySelector('.cancle_5');
-    // const deleteMenu_6 = document.querySelector('.cancle_6');
-    // const deleteMenu_7 = document.querySelector('.cancle_7');
-    // const deleteMenu_8 = document.querySelector('.cancle_8');
-    // const deleteMenu_9 = document.querySelector('.cancle_9');
-    
-    // deleteMenu_1&&deleteMenu_1.addEventListener("click", function () {
-    //     deleteMenu(1);
-    //   });
-    //   deleteMenu_2&&deleteMenu_2.addEventListener("click", function () {
-    //     deleteMenu(2);
-    //   });
-    //   deleteMenu_3&&deleteMenu_3.addEventListener("click", function () {
-    //     deleteMenu(3);
-    //   });
-    //   deleteMenu_4&&deleteMenu_4.addEventListener("click", function () {
-    //     deleteMenu(4);
-    //   });
-    //   deleteMenu_5&&deleteMenu_5.addEventListener("click", function () {
-    //     deleteMenu(5);
-    //   });
-    //   deleteMenu_6&&deleteMenu_6.addEventListener("click", function () {
-    //     deleteMenu(6);
-    //   });
-    //   deleteMenu_7&&deleteMenu_7.addEventListener("click", function () {
-    //     deleteMenu(7);
-    //   });
-    //   deleteMenu_8&&deleteMenu_8.addEventListener("click", function () {
-    //     deleteMenu(8);
-    //   });
-    //   deleteMenu_9&&deleteMenu_9.addEventListener("click", function () {
-    //     deleteMenu(9);
-    //   });
-}
-
+const deleteAllMenu = () => {
+  for (let i = 0; i < deleteAllBtnNum.length; i++) {
+    if (deleteAllBtnNum[i] === 1) {
+      document.querySelector(`.in_order_${i + 1}`).remove();
+      document.querySelector(`.amount_${i + 1}`).innerHTML = 0;
+      deleteAllBtnNum[i] = 0;
+      selected[i].cnt = 0;
+      orderHistory[i] = 0;
+    }
+  }
+  document.querySelector(`.sum`).value = 0;
+  total = 0;
+};
+const orderSubmit = () => {};
+document.querySelector(".order_submit").addEventListener("click", function () {
+  alert(
+    `주문이 완료되었습니다.\n결제금액은 ${total} 원 입니다.\n이용해 주셔서 감사합니다.`
+  );
+  deleteAllMenu();
+});
 btn_1.addEventListener("click", function () {
   clickMenu(1);
 });
@@ -218,9 +206,43 @@ addBtn.addEventListener("click", function () {
   addOrder();
 });
 
-
-
+deleteMenu_1 &&
+  deleteMenu_1.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_2 &&
+  deleteMenu_2.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_3 &&
+  deleteMenu_3.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_4 &&
+  deleteMenu_4.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_5 &&
+  deleteMenu_5.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_6 &&
+  deleteMenu_6.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_7 &&
+  deleteMenu_7.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_8 &&
+  deleteMenu_8.addEventListener("click", function () {
+    deleteMenu();
+  });
+deleteMenu_9 &&
+  deleteMenu_9.addEventListener("click", function () {
+    deleteMenu();
+  });
 
 orderCancleBtn.addEventListener("click", function () {
-  orderCancle();
+  deleteAllMenu();
 });
