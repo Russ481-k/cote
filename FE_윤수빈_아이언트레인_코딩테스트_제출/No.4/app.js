@@ -77,18 +77,30 @@ const deleteMenu_9 = document.querySelector(".cancle_9");
 
 const orderCancleBtn = document.querySelector(`.cancle`);
 const orderedFooter = document.querySelector(`.order_footer`);
+let orderHistory = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let deleteAllBtnNum = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let addMenuList=[]
+let total = 0;
+let totalCount = 0;
 
+const scrollToTop = () => {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  })
+}
 const addBtn = document.querySelector(`.add`);
 const clickMenu = (id) => {
   selected[id - 1].cnt++;
   document.querySelector(`.amount_${id}`).innerHTML = selected[id - 1].cnt;
+  totalCount++
+  addBtn.innerHTML = `총 ${totalCount}잔 추가` 
 };
-let orderHistory = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-let deleteAllBtnNum = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-let total = 0;
 const addOrder = () => {
   for (let i = 1; i < selected.length + 1; i++) {
     if (selected[i - 1].cnt !== 0 && orderHistory[i - 1] === 0) {
+      addMenuList.push(selected[i-1].menu);
+
       const inOrder = document.createElement("div");
       inOrder.classList.add(`in_order_${i}`);
       inOrder.classList.add(`in_order`);
@@ -133,7 +145,9 @@ const addOrder = () => {
   }
   document.querySelector(`.sum`).value = total;
   if (total > 0) {
-    alert(`선택하신 음료 주문이 추가되었습니다.`);
+    scrollToTop()
+    alert(`선택하신\n${addMenuList.join('\n')}\n총 ${totalCount}잔이 추가되었습니다.`);
+
   } else {
     alert(`음료를 선택해 주세요.`);
   }
@@ -141,6 +155,10 @@ const addOrder = () => {
     selected[i - 1].cnt = 0;
     document.querySelector(`.amount_${i}`).innerHTML = 0;
   }
+
+  totalCount=0
+  addBtn.innerHTML = `주문 추가`
+  addMenuList = [] 
 };
 
 const deleteMenu = (e) => {
@@ -153,26 +171,41 @@ const deleteMenu = (e) => {
   document.querySelector(`.sum`).value = total;
   orderHistory[Number(e.target.className[7]) - 1] = 0;
   deleteAllBtnNum[e.target.className[7] - 1] = 0;
+  addMenuList = [];
+  for (let i = 1; i < selected.length + 1; i++) {
+    if (selected[i - 1].cnt !== 0 && orderHistory[i - 1] === 0) {
+      addMenuList.push(selected[i-1].menu);
+    }}
 };
 const deleteAllMenu = () => {
   for (let i = 0; i < deleteAllBtnNum.length; i++) {
     if (deleteAllBtnNum[i] === 1) {
       document.querySelector(`.in_order_${i + 1}`).remove();
-      document.querySelector(`.amount_${i + 1}`).innerHTML = 0;
       deleteAllBtnNum[i] = 0;
       selected[i].cnt = 0;
       orderHistory[i] = 0;
     }
+    document.querySelector(`.amount_${i + 1}`).innerHTML = 0;
   }
   document.querySelector(`.sum`).value = 0;
   total = 0;
+  totalCount=0
+  addBtn.innerHTML = `주문 추가` 
+  scrollToTop()
+  alert(`주문 메뉴가 초기화되었어요.`);
 };
 const orderSubmit = () => {};
 document.querySelector(".order_submit").addEventListener("click", function () {
-  alert(
+  if(total!==0){  alert(
     `주문이 완료되었습니다.\n결제금액은 ${total} 원 입니다.\n이용해 주셔서 감사합니다.`
   );
   deleteAllMenu();
+}else{
+  alert(
+    `원하시는 메뉴를 추가해보세요.`
+  );
+}
+
 });
 btn_1.addEventListener("click", function () {
   clickMenu(1);
